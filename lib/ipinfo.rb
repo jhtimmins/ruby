@@ -13,7 +13,7 @@ module IPinfo
     def getHandler(access_token=nil, settings={})
       IPinfo.new(access_token, settings)
     end
-  end  
+  end
 
   class IPinfo
     attr_accessor :access_token
@@ -45,7 +45,7 @@ module IPinfo
 
     def getHttpClient(http_client=nil)
 
-      if client_name
+      if http_client
         @http_client = Adapter.new(access_token, http_client)
       else
         @http_client = Adapter.new(access_token)
