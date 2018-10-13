@@ -34,7 +34,7 @@ module IPinfo
 
     def default_headers
         {
-          'User-Agent' => "ipinfo-ruby/#{::IpinfoIo::VERSION}",
+          'User-Agent' => "ipinfo-ruby/#{::IPinfo::VERSION}",
           'Accept' => 'application/json'
         }
     end

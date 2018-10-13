@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ipinfoio/ruby.svg?branch=master)](https://travis-ci.org/ipinfoio/ruby)
+[![Build Status](https://travis-ci.org/ipinfo/ruby.svg?branch=master)](https://travis-ci.org/ipinfo/ruby)
 
 # Ipinfo.io
 
