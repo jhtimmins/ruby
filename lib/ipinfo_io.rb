@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "ipinfo_io/version"
-require 'ipinfo_io/errors'
-require 'ipinfo_io/response'
-require 'ipinfo_io/adapter'
+require "ipinfo/version"
+require 'ipinfo/errors'
+require 'ipinfo/response'
+require 'ipinfo/adapter'
 require 'cgi'
 
-module IpinfoIo
+module IPinfo
   RATE_LIMIT_MESSAGE = "To increase your limits, please review our paid plans at https://ipinfo.io/pricing"
 
   class << self

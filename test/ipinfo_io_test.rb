@@ -1,33 +1,33 @@
 # frozen_string_literal: true
 require 'test_helper'
 
-class IpinfoIoTest < Minitest::Test
+class IPinfoTest < Minitest::Test
   IP4 = '195.233.174.116'
   IP6 = '2601:9:7680:363:75df:f491:6f85:352f'
 
   def test_that_it_has_a_version_number
-    refute_nil ::IpinfoIo::VERSION
+    refute_nil ::IPinfo::VERSION
   end
 
   def test_set_adapter
-    assert IpinfoIo.http_adapter = :excon
-    IpinfoIo.http_adapter = nil
+    assert IPinfo.http_adapter = :excon
+    IPinfo.http_adapter = nil
   end
 
   def test_set_access_token
-    assert IpinfoIo.access_token = 'test_token'
+    assert IPinfo.access_token = 'test_token'
 
     VCR.use_cassette('lookup_with_token') do
-      IpinfoIo.lookup
+      IPinfo.lookup
       assert_requested :get, "https://ipinfo.io?token=test_token"
     end
 
-    IpinfoIo.access_token = nil
+    IPinfo.access_token = nil
   end
 
   def test_rate_limit_error
     stub_request(:get, 'https://ipinfo.io').to_return(body:'', status: 429)
-    error = assert_raises(IpinfoIo::RateLimitError) { IpinfoIo.lookup }
+    error = assert_raises(IPinfo::RateLimitError) { IPinfo.lookup }
     assert_equal "To increase your limits, please review our paid plans at https://ipinfo.io/pricing", error.message
   end
 
@@ -44,8 +44,8 @@ class IpinfoIoTest < Minitest::Test
     }
 
     VCR.use_cassette('current machine search') do
-      IpinfoIo.lookup.tap do |resp|
-        assert_instance_of IpinfoIo::Response, resp
+      IPinfo.lookup.tap do |resp|
+        assert_instance_of IPinfo::Response, resp
         assert_equal expected, resp.data
         assert_equal 200, resp.status
       end
@@ -63,7 +63,7 @@ class IpinfoIoTest < Minitest::Test
     }
 
     VCR.use_cassette('search with ip6') do
-      assert_equal expected, IpinfoIo.lookup(IP6).data
+      assert_equal expected, IPinfo.lookup(IP6).data
     end
   end
 
@@ -78,7 +78,7 @@ class IpinfoIoTest < Minitest::Test
     }
 
     VCR.use_cassette('search with random ip') do
-      assert_equal expected, IpinfoIo.lookup(IP4).data
+      assert_equal expected, IPinfo.lookup(IP4).data
     end
   end
 end

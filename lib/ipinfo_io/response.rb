@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'json'
 
-module IpinfoIo
+module IPinfo
   class Response
     # The data contained by the HTTP body of the response deserialized from
     # JSON.
@@ -17,7 +17,7 @@ module IpinfoIo
     attr_accessor :status
 
     def self.from_faraday(response)
-      resp = IpinfoIo::Response.new
+      resp = IPinfo::Response.new
       resp.data = JSON.parse(response.body, symbolize_names: true)
       resp.body = response.body
       resp.headers = response.headers

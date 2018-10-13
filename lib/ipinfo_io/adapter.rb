@@ -2,7 +2,7 @@
 require 'faraday'
 require 'cgi'
 
-module IpinfoIo
+module IPinfo
   class Adapter
     HOST = 'ipinfo.io'
 

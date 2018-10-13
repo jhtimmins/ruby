@@ -9,7 +9,7 @@ Use the ipinfo.io IP lookup API wrapper to quickly and simply integrate IP geolo
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ipinfo_io'
+gem 'ipinfo'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ipinfo_io
+    $ gem install ipinfo
 
 ## Usage
 
@@ -82,4 +82,3 @@ Setting up project:
 Running tests is as easy as `bundle exec rake`
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/ipinfoio/ruby/.
-
