@@ -21,7 +21,7 @@ module IPinfo
     def initialize(access_token=nil, settings={})
       @access_token = access_token
       @http_client = getHttpClient(settings.fetch("http_client", nil))
-      @cache = getCache(settings.fetch("cache", nil))
+      #@cache = getCache(settings.fetch("cache", nil))
     end
 
     def getDetails(ip_address=nil)
