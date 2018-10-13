@@ -12,6 +12,8 @@ module IPinfo
   class << self
     def getHandler(access_token=nil, settings={})
       IPinfo.new(access_token, settings)
+    end
+  end  
 
   class IPinfo
     attr_accessor :access_token
