@@ -17,7 +17,7 @@ module IPinfo
     attr_accessor :status
 
     def self.from_faraday(response)
-      resp = IPinfo::Response.new
+      resp = Response.new
       resp.data = JSON.parse(response.body, symbolize_names: true)
       resp.body = response.body
       resp.headers = response.headers
