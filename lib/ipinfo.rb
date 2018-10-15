@@ -35,7 +35,7 @@ module IPinfo
 
       raise RateLimitError.new(RATE_LIMIT_MESSAGE) if response.status.eql?(429)
 
-      Response.from_faraday(response)
+      Response.new(response)
 
       #save to cache
 
