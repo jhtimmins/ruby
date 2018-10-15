@@ -9,7 +9,7 @@ module IPinfo
 
     def initialize(response)
       @all = JSON.parse(response.body, symbolize_names: true)
-      response_data.each do |name, value|
+      response.each do |name, value|
         instance_variable_set("@#{name}", value)
         self.class.send(:attr_accessor, name)
       end
