@@ -7,7 +7,7 @@ module IPinfo
     # JSON.
     attr_reader :all
 
-    def initialize(response_data)
+    def initialize(response)
       @all = JSON.parse(response.body, symbolize_names: true)
       response_data.each do |name, value|
         instance_variable_set("@#{name}", value)
