@@ -21,7 +21,6 @@ group :development do
   gem 'minitest-vcr'
   gem 'minitest-reporters'
   gem 'webmock'
-  gem 'lrucache', '~> 0.1.4'
 
   platforms :mri do
     # to avoid problems, bring Byebug in on just versions of Ruby under which
