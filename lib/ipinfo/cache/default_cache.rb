@@ -1,4 +1,4 @@
-require 'ipinfo/cache_interface'
+require 'ipinfo/cache/cache_interface'
 require 'lrucache'
 
 module IPinfo

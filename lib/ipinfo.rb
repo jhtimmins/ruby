@@ -2,7 +2,7 @@
 
 require 'cgi'
 require 'ipinfo/adapter'
-require 'ipinfo/default_cache'
+require 'ipinfo/cache/default_cache'
 require 'ipinfo/errors'
 require 'ipinfo/response'
 require "ipinfo/version"
