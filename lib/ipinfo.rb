@@ -36,6 +36,7 @@ module IPinfo
 
     def getDetails(ip_address=nil)
       details = getRequestDetails(ip_address)
+      details[:country_name] = @countries.fetch(details.fetch(country))
       Response.new(details)
     end
 
