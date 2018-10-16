@@ -27,22 +27,23 @@ module IPinfo
     end
 
     def getDetails(ip_address=nil)
-      details = requestDetails(ip_address)
+      details = getRequestDetails(ip_address)
+      Response.new(details)
     end
 
     protected
-    def requestDetails(ip_address=nil)
-      # if not in cache
-      response = @http_client.get(escape_path(ip_address))
+    def getRequestDetails(ip_address=nil)
 
-      raise RateLimitError.new(RATE_LIMIT_MESSAGE) if response.status.eql?(429)
+      if !@cache.contains(ip_address)
+        response = @http_client.get(escape_path(ip_address))
 
-      Response.new(response)
+        raise RateLimitError.new(RATE_LIMIT_MESSAGE) if response.status.eql?(429)
 
-      #save to cache
+        details = JSON.parse(response.body, symbolize_names: true)
+        @cache.set(ip_address, details)
+      end
 
-      #return value from cache
-
+      @cache.get(ip_address)
     end
 
     def getHttpClient(http_client=nil)
@@ -55,12 +56,7 @@ module IPinfo
 
     end
 
-    # def getCache(cache=nil)
-    #
-    # end
-
     private
-
     def escape_path(ip)
       ip ? "/#{CGI::escape(ip)}" : '/'
     end
