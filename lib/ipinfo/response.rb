@@ -16,7 +16,7 @@ module IPinfo
       end
 
       if response.has_key?(:ip)
-        instance_variable_set(@ip_address, IPAddr.new(response[:ip]))
+        instance_variable_set(@ip_address, IPAddr.new(@ip))
         self.class.send(:attr_accessor, 'ip_address')
       end
     end
