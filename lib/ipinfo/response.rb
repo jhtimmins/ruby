@@ -16,6 +16,7 @@ module IPinfo
       end
       if response.has_key?('ip')
         @ip_address = IPAddr.new(response.fetch('ip'))
+        self.class.send(:attr_accessor, 'ip_address')
       end
     end
   end
