@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-require "ipinfo/version"
+require 'cgi'
+require 'ipinfo/adapter'
+require 'ipinfo/default_cache'
 require 'ipinfo/errors'
 require 'ipinfo/response'
-require 'ipinfo/adapter'
-require 'cgi'
+require "ipinfo/version"
 
 module IPinfo
   RATE_LIMIT_MESSAGE = "To increase your limits, please review our paid plans at https://ipinfo.io/pricing"
@@ -21,6 +22,7 @@ module IPinfo
     def initialize(access_token=nil, settings={})
       @access_token = access_token
       @http_client = getHttpClient(settings.fetch("http_client", nil))
+      @cache = DefaultCache.new
       #@cache = getCache(settings.fetch("cache", nil))
     end
 
