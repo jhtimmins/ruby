@@ -8,6 +8,8 @@ require 'ipinfo/response'
 require "ipinfo/version"
 
 module IPinfo
+  DEFAULT_CACHE_MAXSIZE = 4096
+  DEFAULT_CACHE_TTL = 60 * 60 * 24
   RATE_LIMIT_MESSAGE = "To increase your limits, please review our paid plans at https://ipinfo.io/pricing"
 
   class << self
@@ -22,8 +24,10 @@ module IPinfo
     def initialize(access_token=nil, settings={})
       @access_token = access_token
       @http_client = getHttpClient(settings.fetch("http_client", nil))
-      @cache = DefaultCache.new
-      #@cache = getCache(settings.fetch("cache", nil))
+
+      maxsize = settings.fetch("maxsize", DEFAULT_CACHE_MAXSIZE)
+      ttl = settings.fetch("ttl", DEFAULT_CACHE_TTL)
+      @cache = settings.fetch("cache", DefaultCache.new(ttl, maxsize))
     end
 
     def getDetails(ip_address=nil)

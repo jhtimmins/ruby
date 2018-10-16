@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
       "public gem pushes."
   end
 
-  spec.add_dependency 'faraday'
+  spec.add_runtime_dependency 'faraday', '~> 0'
   spec.add_runtime_dependency 'lrucache', '~> 0.1.4'
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|

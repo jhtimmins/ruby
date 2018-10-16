@@ -4,10 +4,7 @@ require 'lrucache'
 module IPinfo
   class DefaultCache < CacheInterface
 
-    DEFAULT_TTL = 60 * 60 * 24
-    DEFAULT_MAXSIZE = 4096
-
-    def initialize(ttl=DEFAULT_TTL, maxsize=DEFAULT_MAXSIZE)
+    def initialize(ttl, maxsize)
       @cache = LRUCache.new(:ttl => ttl, :maxsize => maxsize)
     end
 
