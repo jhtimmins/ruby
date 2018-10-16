@@ -3,7 +3,7 @@ module IPinfo
     def get(key)
     end
 
-    def set(key, value))
+    def set(key, value)
     end
 
     def contains(key
