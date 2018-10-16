@@ -31,7 +31,7 @@ module IPinfo
       maxsize = settings.fetch("maxsize", DEFAULT_CACHE_MAXSIZE)
       ttl = settings.fetch("ttl", DEFAULT_CACHE_TTL)
       @cache = settings.fetch("cache", DefaultCache.new(ttl, maxsize))
-      @countries = getCountries(settings.fetch('countries'), DEFAULT_COUNTRY_FILE)
+      @countries = getCountries(settings.fetch('countries', DEFAULT_COUNTRY_FILE))
     end
 
     def getDetails(ip_address=nil)
