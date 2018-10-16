@@ -5,11 +5,13 @@ require 'ipinfo/adapter'
 require 'ipinfo/cache/default_cache'
 require 'ipinfo/errors'
 require 'ipinfo/response'
-require "ipinfo/version"
+require 'ipinfo/version'
+require 'json'
 
 module IPinfo
   DEFAULT_CACHE_MAXSIZE = 4096
   DEFAULT_CACHE_TTL = 60 * 60 * 24
+  DEFAULT_COUNTRY_FILE = 'countries.json'
   RATE_LIMIT_MESSAGE = "To increase your limits, please review our paid plans at https://ipinfo.io/pricing"
 
   class << self
@@ -20,6 +22,7 @@ module IPinfo
 
   class IPinfo
     attr_accessor :access_token
+    attr_accessor :countries
 
     def initialize(access_token=nil, settings={})
       @access_token = access_token
@@ -28,6 +31,7 @@ module IPinfo
       maxsize = settings.fetch("maxsize", DEFAULT_CACHE_MAXSIZE)
       ttl = settings.fetch("ttl", DEFAULT_CACHE_TTL)
       @cache = settings.fetch("cache", DefaultCache.new(ttl, maxsize))
+      @countries = getCountries(settings.fetch('countries'), DEFAULT_COUNTRY_FILE)
     end
 
     def getDetails(ip_address=nil)
@@ -58,6 +62,11 @@ module IPinfo
         @http_client = Adapter.new(access_token)
       end
 
+    end
+
+    def getCountries(filename)
+      file = File.read(filename)
+      JSON.parse(file)
     end
 
     private
