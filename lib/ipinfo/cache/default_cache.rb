@@ -8,7 +8,7 @@ module IPinfo
     DEFAULT_MAXSIZE = 4096
 
     def initialize(ttl=DEFAULT_TTL, maxsize=DEFAULT_MAXSIZE)
-      @cache = LRUCache.new(:ttl => ttl.seconds, :maxsize => maxsize)
+      @cache = LRUCache.new(:ttl => ttl, :maxsize => maxsize)
     end
 
     def get(key)
