@@ -50,7 +50,6 @@ module IPinfo
 
     protected
     def getRequestDetails(ip_address=nil)
-
       if !@cache.contains(ip_address)
         response = @http_client.get(escape_path(ip_address))
 
@@ -59,18 +58,15 @@ module IPinfo
         details = JSON.parse(response.body, symbolize_names: true)
         @cache.set(ip_address, details)
       end
-
       @cache.get(ip_address)
     end
 
     def getHttpClient(http_client=nil)
-
       if http_client
         @http_client = Adapter.new(access_token, http_client)
       else
         @http_client = Adapter.new(access_token)
       end
-
     end
 
     def getCountries(filename)
