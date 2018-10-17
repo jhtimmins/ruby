@@ -38,8 +38,13 @@ module IPinfo
 
     def getDetails(ip_address=nil)
       details = getRequestDetails(ip_address)
-      details[:country_name] = @countries.fetch(details.fetch(:country, nil))
-      details[:ip_address] = IPAddr.new(details.fetch(:ip, nil))
+      if details.has_key? :country:
+        details[:country_name] = @countries.fetch(details.fetch(:country), nil)
+      end
+
+      if details.has_key? :ip_address
+        details[:ip_address] = IPAddr.new(details.fetch(:ip), nil)
+      end
       Response.new(details)
     end
 
