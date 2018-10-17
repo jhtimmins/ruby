@@ -45,6 +45,13 @@ module IPinfo
       if details.has_key? :ip
         details[:ip_address] = IPAddr.new(details.fetch(:ip))
       end
+
+      if details.has_key? :loc
+        loc = details.fetch(:ip).split(",")
+        details[:latitude] = loc[0]
+        details[:longitude] = loc[1]
+      end
+
       Response.new(details)
     end
 
