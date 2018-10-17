@@ -42,7 +42,7 @@ module IPinfo
         details[:country_name] = @countries.fetch(details.fetch(:country), nil)
       end
 
-      if details.has_key? :ip_address
+      if details.has_key? :ip
         details[:ip_address] = IPAddr.new(details.fetch(:ip))
       end
       Response.new(details)
