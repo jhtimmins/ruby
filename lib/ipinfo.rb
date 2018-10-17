@@ -43,7 +43,7 @@ module IPinfo
       end
 
       if details.has_key? :ip_address
-        details[:ip_address] = IPAddr.new(details.fetch(:ip), nil)
+        details[:ip_address] = IPAddr.new(details.fetch(:ip))
       end
       Response.new(details)
     end
