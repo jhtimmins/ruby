@@ -33,10 +33,15 @@ module IPinfo
     end
 
     def default_headers
-        {
-          'User-Agent' => "ipinfo-ruby/#{::IPinfo::VERSION}",
+        headers = {
+          'User-Agent' => "IPinfoClient/Ruby/1.0",
           'Accept' => 'application/json'
         }
+        if token
+          headers['Authorization'] = "Bearer #{CGI::escape(token)}"
+        end
+        puts headers
+        headers
     end
   end
 end
