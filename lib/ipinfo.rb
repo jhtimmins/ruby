@@ -47,7 +47,7 @@ module IPinfo
       end
 
       if details.has_key? :loc
-        loc = details.fetch(:ip).split(",")
+        loc = details.fetch(:loc).split(",")
         details[:latitude] = loc[0]
         details[:longitude] = loc[1]
       end
