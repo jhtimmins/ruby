@@ -44,6 +44,8 @@ class IPinfoTest < Minitest::Test
       country: "TH",
       country_name: "Thailand",
       loc: "18.7904,98.9847",
+      latitude: "18.7904",
+      longitude: "98.9847",
       org: "AS17552 TRUE INTERNET CO., LTD.",
       postal: "50000"
     }
@@ -69,6 +71,8 @@ class IPinfoTest < Minitest::Test
       country: "US",
       country_name: "United States",
       loc: "37.7510,-97.8220",
+      latitude: "37.7510",
+      longitude: "-97.8220",
       org: "AS7922 Comcast Cable Communications, LLC"
     }
 
@@ -88,6 +92,8 @@ class IPinfoTest < Minitest::Test
       country: "DE",
       country_name: "Germany",
       loc: "51.2993,9.4910",
+      latitude: "51.2993",
+      longitude: "9.4910",
       org: "AS12663 Vodafone Italia S.p.A."
     }
 
