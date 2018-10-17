@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'cgi'
+require 'ipaddr'
 require 'ipinfo/adapter'
 require 'ipinfo/cache/default_cache'
 require 'ipinfo/errors'
@@ -23,6 +24,7 @@ module IPinfo
   class IPinfo
     attr_accessor :access_token
     attr_accessor :countries
+    attr_accessor :http_client
 
     def initialize(access_token=nil, settings={})
       @access_token = access_token
@@ -37,6 +39,7 @@ module IPinfo
     def getDetails(ip_address=nil)
       details = getRequestDetails(ip_address)
       details[:country_name] = @countries.fetch(details.fetch(:country))
+      details[:ip_address] = IPAddr.new(details.fetch(:ip))
       Response.new(details)
     end
 
